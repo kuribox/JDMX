@@ -1088,11 +1088,7 @@ void SetISRMode ( isr::isrMode mode )
         case isr::RDMTransmit:
             DMX_UDR         = 0x0; 
             readEnable      = HIGH;
-            __isr_txState   = isr::RdmBreak; 
-<<<<<<< HEAD
-            DMX_UCSRB       = (1<<DMX_TXEN) | (1<<DMX_TXCIE);
-=======
->>>>>>> RDMtransmit
+            __isr_txState   = isr::RdmBreak;
             break;
     }
 
@@ -1209,15 +1205,11 @@ ISR (USART_TX)
             SetISRMode ( isr::Receive ); 
             __isr_txState = isr::Idle; 
         }     // No tx state
-<<<<<<< HEAD
-        else SetISRMode( isr::Disabled );
-=======
         else
         {
             __rdm_controller->setSendFlag(false);
             SetISRMode( isr::DMXTransmit );
         }
->>>>>>> RDMtransmit
         //else SetISRMode( isr::DMXTransmit ); //If we're a controller, start sending DMX??
         //TODO: Need different logic in order to wait for responses
         break;
